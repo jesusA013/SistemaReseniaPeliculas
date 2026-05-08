@@ -2,11 +2,11 @@
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <persistence-unit name="CinemaPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Entidades.Usuario</class>
-    <class>Entidades.Pelicula</class>
     <class>Entidades.Actor</class>
+    <class>Entidades.Pelicula</class>
     <class>Entidades.Playlist</class>
     <class>Entidades.Resena</class>
+    <class>Entidades.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cine_db?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

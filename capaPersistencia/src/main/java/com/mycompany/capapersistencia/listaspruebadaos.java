@@ -1,13 +1,20 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package com.mycompany.capapersistencia;
 
 import Entidades.Actor;
 import Entidades.Pelicula;
+import Entidades.Playlist;
+import Entidades.Usuario;
 import IntegracionApi2.ActorTMDB;
 import IntegracionApi2.TMDBApiAdapter;
 import IntegracionApi2.TMDBResponse;
+import dao.PeliculaDAO;
+import dao.PlaylistDAO;
+import dao.UsuarioDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,10 +22,13 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Jesus
+ * @author golea
  */
-public class CapaPersistencia {
+public class listaspruebadaos {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         TMDBApiAdapter api = new TMDBApiAdapter();
         TMDBResponse datosApi = api.buscarPeliculaDetalle(550);
@@ -91,5 +101,69 @@ public class CapaPersistencia {
             }
         }
 
+        ////lista peliculas con prueba dqao
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        PeliculaDAO peliculaDAO = new PeliculaDAO();
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+
+        Usuario nuevoUsuario = new Usuario();
+        nuevoUsuario.setNombre("Goleath");
+        nuevoUsuario.setEmail("goleath@example.com");
+        nuevoUsuario.setPassword("password123");
+
+        usuarioDAO.guardarUsuario(nuevoUsuario);
+        System.out.println("✅ UsuarioDAO: Usuario guardado con exito.");
+
+        Usuario buscado = usuarioDAO.buscarPorEmail("goleath@example.com");
+        System.out.println("✅ UsuarioDAO: Busqueda por email exitosa: " + buscado.getNombre());
+
+        System.out.println("=== INICIANDO PRUEBA DE PLAYLIST ===");
+
+        try {
+            // 2. Obtener un usuario existente
+            Usuario usuario = usuarioDAO.buscarPorEmail("goleath@example.com");
+            if (usuario == null) {
+                System.out.println("❌ Error: El usuario no existe. Crea uno primero.");
+                return;
+            }
+
+            // 3. Obtener películas de la base de datos
+            List<Pelicula> catalogo = peliculaDAO.listarPelicula();
+            if (catalogo.size() < 3) {
+                System.out.println("❌ Error: Necesitas al menos 3 películas en la BD. Ejecuta el Main anterior.");
+                return;
+            }
+
+            // 4. Crear la nueva Playlist
+            Playlist miLista = new Playlist();
+            miLista.setNombre("Maratón de Fin de Semana");
+            miLista.setUsuario(usuario);
+            miLista.setEsPublica(true);
+
+            // Seleccionamos las primeras 3 películas del catálogo
+            List<Pelicula> seleccionadas = new ArrayList<>();
+            seleccionadas.add(catalogo.get(0));
+            seleccionadas.add(catalogo.get(1));
+            seleccionadas.add(catalogo.get(2));
+
+            miLista.setPeliculas(seleccionadas);
+
+            // 5. Persistir
+            System.out.println("Intentando guardar la playlist '" + miLista.getNombre() + "'...");
+            playlistDAO.insertar(miLista);
+
+            System.out.println("✅ ¡Éxito! Playlist guardada correctamente.");
+
+            // 6. Verificación final: Listar playlists del usuario
+            List<Playlist> misListas = playlistDAO.obtenerPorUsuario(usuario.getId());
+            System.out.println("Listas actuales del usuario: " + misListas.size());
+            for (Playlist p : misListas) {
+                System.out.println("- " + p.getNombre() + " (" + p.getPeliculas().size() + " películas)");
+            }
+
+        } catch (Exception e) {
+            System.err.println("❌ Fallo crítico en la prueba: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
