@@ -65,23 +65,38 @@ public class PeliculaService implements IPeliculaService {
     }
 
     @Override
+    public List<PeliculasDTO> obtenerUltimasPeliculas() {
+        List<Pelicula> entidades = peliculaDAO.listarPeliculasRecientes(4);
+        List<PeliculasDTO> dtos = new ArrayList<>();
+
+        for (Pelicula e : entidades) {
+            PeliculasDTO dto = new PeliculasDTO();
+            dto.setIdPelicula(e.getId());
+            dto.setTmdbId(e.getTmdbId());
+            dto.setTitulo(e.getTitulo());
+            dto.setSinopsis(e.getSinopsis());
+            dto.setRatingPromedio(e.getRatingPromedio());
+            dto.setPosterPath(e.getPosterPath());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    @Override
     public void sincronizarApi(int tmdbId) {
         TMDBApiAdapter apiAdapter = new TMDBApiAdapter();
-
         IntegracionApi.TMDBResponse infoApi = apiAdapter.buscarPeliculaDetalle(tmdbId);
 
         if (infoApi != null) {
             Pelicula entidad = new Pelicula();
-
             entidad.setTmdbId(infoApi.id);
             entidad.setTitulo(infoApi.title);
             entidad.setSinopsis(infoApi.overview);
             entidad.setRatingPromedio((float) infoApi.vote_average);
+            entidad.setPosterPath(infoApi.poster_path); // <--- Guardar poster de la API
 
             peliculaDAO.crearPelicula(entidad);
-            System.out.println("✅ Sincronizada: " + infoApi.title);
-        } else {
-            System.err.println("❌ No se encontró la película en TMDB con ID: " + tmdbId);
         }
     }
+
 }

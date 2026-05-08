@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEstrenos" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblActor2" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblActor1" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblActor3" min="-2" pref="88" max="-2" attributes="0"/>
+                                          <Component id="lblActor4" min="-2" pref="88" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblActor5" min="-2" pref="88" max="-2" attributes="0"/>
+                                  <Component id="lblActor6" min="-2" pref="88" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="jTextField1" min="-2" pref="291" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnBuscarPelicula" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnPlaylist" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="74" pref="90" max="32767" attributes="0"/>
+                      <Component id="imgCaratulaPelicula" min="-2" pref="133" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="imgCaratulaPelicula1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="imgCaratulaPelicula2" min="-2" pref="127" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="imgCaratulaPelicula3" min="-2" pref="127" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="btnReseñas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="lblnombredeUsuario" min="-2" pref="123" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="66" pref="66" max="-2" attributes="0"/>
+              <Component id="btnNombrePeli0" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="btnNombrePeli1" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Component id="btnNombrePeli2" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="btnNombrePeli3" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnReseñas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblnombredeUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBuscarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPlaylist" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <Component id="lblEstrenos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="imgCaratulaPelicula" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="imgCaratulaPelicula1" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="imgCaratulaPelicula2" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="imgCaratulaPelicula3" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnNombrePeli0" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNombrePeli1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNombrePeli2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNombrePeli3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblActor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblActor4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblActor5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblActor3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblActor2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblActor6" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="imgCaratulaPelicula">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="imgCaratulaPelicula1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="imgCaratulaPelicula2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="imgCaratulaPelicula3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEstrenos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ESTRENOS:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Actores Recientes:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblActor1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ActorNombre1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblActor2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ActorNombre2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblActor3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ActorNombre3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblActor4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ActorNombre4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblActor5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ActorNombre5"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblActor6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ActorNombre6"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRese&#xf1;as">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rese&#xf1;as"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRese&#xf1;asActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblnombredeUsuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre de Usuario"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBuscarPelicula">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar Pelicula"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Introduce nombre de pelicula"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPlaylist">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Playlist"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnNombrePeli0">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnNombrePeli1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnNombrePeli2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnNombrePeli3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

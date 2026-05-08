@@ -76,4 +76,15 @@ public class PeliculaDAO {
             em.close();
         }
     }
+
+    public List<Pelicula> listarPeliculasRecientes(int limite) {
+        EntityManager em = ConexionDB.getInstancia().getEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Pelicula p ORDER BY p.id DESC", Pelicula.class)
+                    .setMaxResults(limite)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

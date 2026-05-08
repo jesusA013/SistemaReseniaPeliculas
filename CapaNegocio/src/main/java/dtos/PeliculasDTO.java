@@ -16,6 +16,7 @@ public class PeliculasDTO {
     private int idPelicula;
     private int tmdbId;
     private String titulo;
+    private String posterPath;
     private String sinopsis;
     private Date fechaEstreno;
     private float ratingPromedio;
@@ -55,8 +56,17 @@ public class PeliculasDTO {
     public void setListaActores(List<ActorDTO> listaActores) {
         this.listaActores = listaActores;
     }
-    
 
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+    
+    
+    
     public String getTitulo() {
         return titulo;
     }

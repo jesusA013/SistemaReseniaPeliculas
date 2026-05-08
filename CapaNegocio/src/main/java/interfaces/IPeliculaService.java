@@ -14,5 +14,6 @@ import java.util.List;
 public interface IPeliculaService {
     List<PeliculasDTO> catalogoPeliculas();
     PeliculasDTO buscarPelicula(int id);
+    List<PeliculasDTO> obtenerUltimasPeliculas();
     void sincronizarApi(int tmdbId);
     }

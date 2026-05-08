@@ -30,7 +30,7 @@ public class Pelicula implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "tmdb_id", unique = true, nullable = false) 
+    @Column(name = "tmdb_id", unique = true, nullable = false)
     private int tmdbId;
 
     @Column(nullable = false, length = 255)
@@ -43,15 +43,17 @@ public class Pelicula implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaEstreno;
 
+    @Column(name = "poster_path", length = 255)
+    private String posterPath;
+
     @Column(name = "rating_promedio")
-    private float ratingPromedio; 
+    private float ratingPromedio;
 
     // Relacion One-to-Many: Una pelicula tiene muchas reseñas
     @OneToMany(mappedBy = "pelicula")
     private List<Resena> reseñas;
 
     // relacion Many-to-Many: Una película tiene muchos actores, y un actor esta en muchas películas
-   
     @ManyToMany(mappedBy = "peliculas")
     private List<Actor> listaActores;
 
@@ -72,6 +74,14 @@ public class Pelicula implements Serializable {
 
     public void setTmdbId(int tmdbId) {
         this.tmdbId = tmdbId;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     public String getTitulo() {
