@@ -6,6 +6,7 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,16 +37,21 @@ public class Resena implements Serializable {
     private int calificacion;
 
     @Column(name = "fecha_creacion")
-    @Temporal(TemporalType.TIMESTAMP) 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
     // Relación Many-to-One: Muchas reseñas pertenecen a una película
-    @ManyToOne
-    @JoinColumn(name = "pelicula_id", nullable = false) 
+    /*@ManyToOne
+    @JoinColumn(name = "pelicula_id", nullable = false)*/
+    @ManyToOne(cascade = CascadeType.MERGE) // O CascadeType.PERSIST
+    @JoinColumn(name = "pelicula_id", nullable = false)
     private Pelicula pelicula;
 
     // Relación Many-to-One: Muchas reseñas pertenecen a un usuario
-    @ManyToOne
+    /**
+     * @ManyToOne @JoinColumn(name = "usuario_id", nullable = false)
+     */
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 

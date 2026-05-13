@@ -13,6 +13,7 @@ public class ActorDTO {
     private int id;
     private String nombre;
     private String biografia;
+    private String rutaPerfil;
 
     public ActorDTO() {
     }
@@ -23,6 +24,16 @@ public class ActorDTO {
         this.biografia = biografia;
     }
 
+    public String getRutaPerfil() {
+        return rutaPerfil;
+    }
+
+    public void setRutaPerfil(String rutaPerfil) {
+        this.rutaPerfil = rutaPerfil;
+    }
+
+    
+    
     public int getId() {
         return id;
     }

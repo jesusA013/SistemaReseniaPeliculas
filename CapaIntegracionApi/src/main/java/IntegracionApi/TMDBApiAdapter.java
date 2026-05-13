@@ -45,7 +45,6 @@ public class TMDBApiAdapter {
 
     public List<TMDBResponse> buscarPeliculasPorNombre(String nombre) {
         try {
-            // Codificar el nombre para la URL (maneja espacios y caracteres especiales)
             String query = URLEncoder.encode(nombre, StandardCharsets.UTF_8.toString());
             String urlString = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&query=" + query + "&language=es-ES";
 
@@ -88,7 +87,7 @@ public class TMDBApiAdapter {
 
     }
 
-    public ActorTMDB obtenerDetalleActor(int actorId) {
+    /*public ActorTMDB obtenerDetalleActor(int actorId) {
         try {
             String urlString = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + API_KEY + "&language=es-ES";
             java.net.URL url = new java.net.URL(urlString);
@@ -104,7 +103,76 @@ public class TMDBApiAdapter {
             System.err.println("Error al obtener detalle del actor: " + e.getMessage());
         }
         return null;
+
+    }
+
+     */
+    public TMDBResponse buscarPeliculaPorNombre(String titulo) {
+        try {
+            String urlString = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY
+                    + "&query=" + java.net.URLEncoder.encode(titulo, "UTF-8") + "&language=es-ES";
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            if (conn.getResponseCode() == 200) {
+                java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
+                MovieSearchResponse response = new Gson().fromJson(in, MovieSearchResponse.class);
+                return (response.results != null && !response.results.isEmpty()) ? response.results.get(0) : null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     
+    
+    
+    public ActorTMDB obtenerDetalleActor(int actorId) {
+        try {
+            String urlString = "https://api.themoviedb.org/3/person/" + actorId + "?api_key=" + API_KEY + "&language=es-ES";
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            if (conn.getResponseCode() == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                return new Gson().fromJson(in, ActorTMDB.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+     
+
+    public java.util.Date parseFecha(String fechaStr) {
+        if (fechaStr == null || fechaStr.isEmpty()) {
+            return null;
+        }
+        try {
+            return new java.text.SimpleDateFormat("yyyy-MM-dd").parse(fechaStr);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private class MovieSearchResponse {
+
+        List<TMDBResponse> results;
+    }
+
+    public List<ActorTMDB> obtenerActoresDePelicula(int tmdbId) {
+        try {
+            String urlString = "https://api.themoviedb.org/3/movie/" + tmdbId + "/credits?api_key=" + API_KEY + "&language=es-ES";
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            if (conn.getResponseCode() == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                CreditsResponse response = new Gson().fromJson(in, CreditsResponse.class);
+                return response.cast;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new java.util.ArrayList<>();
+    }
+
 }
-}
- 

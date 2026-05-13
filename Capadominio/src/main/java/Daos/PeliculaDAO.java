@@ -19,7 +19,7 @@ public class PeliculaDAO {
         EntityManager em = ConexionDB.getInstancia().getEntityManager();
         try {
             em.getTransaction().begin();
-            em.persist(pelicula);
+            em.merge(pelicula);
             em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
@@ -83,6 +83,33 @@ public class PeliculaDAO {
             return em.createQuery("SELECT p FROM Pelicula p ORDER BY p.id DESC", Pelicula.class)
                     .setMaxResults(limite)
                     .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public Pelicula buscarPorTitulo(String titulo) {
+        EntityManager em = ConexionDB.getInstancia().getEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Pelicula p WHERE p.titulo LIKE :titulo", Pelicula.class)
+                    .setParameter("titulo", "%" + titulo + "%")
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Pelicula buscarPorTmdbId(int tmdbId) {
+        EntityManager em = ConexionDB.getInstancia().getEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Pelicula p WHERE p.tmdbId = :tmdbId", Pelicula.class)
+                    .setParameter("tmdbId", tmdbId)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
         } finally {
             em.close();
         }

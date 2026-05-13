@@ -6,7 +6,19 @@ package Pantallas;
 
 import dtos.UsuarioDTO;
 import interfaces.IUsuarioService;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.border.AbstractBorder;
 import servicios.UsuarioService;
 
 /**
@@ -24,11 +36,70 @@ public class RegistroUsuario extends javax.swing.JPanel {
         initComponents();
         // Inicializamos el servicio que contiene la lógica de validación 
         this.usuarioService = new UsuarioService();
-
+        personalizarDiseñoAgrandado();
         // Limpiamos los campos de texto iniciales
         txtNombreUsuario.setText("");
         txtCorreoElectronico.setText("");
         txtContrasena.setText("");
+    }
+
+    private void personalizarDiseñoAgrandado() {
+        // Fondo igual al de inicio de sesión
+        this.setBackground(Color.WHITE);
+
+        // --- CONFIGURACIÓN DE ESCALA (Igual a InicioSesion) ---
+        Dimension dimensionCampos = new Dimension(350, 50);
+        Dimension dimensionBotones = new Dimension(350, 55);
+        Font fuenteLabels = new Font("SansSerif", Font.PLAIN, 18);
+        Font fuenteCampos = new Font("SansSerif", Font.PLAIN, 18);
+        Font fuenteBotones = new Font("SansSerif", Font.BOLD, 18);
+
+        // Estilo de etiquetas
+        lblUsuario.setFont(fuenteLabels);
+        lblCorreoElectronico.setFont(fuenteLabels);
+        lblContrasena.setFont(fuenteLabels);
+
+        // Borde redondeado (Corregido con draw para poder escribir)
+        AbstractBorder roundedBorder = new AbstractBorder() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(Color.GRAY);
+                g2.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, 20, 20));
+                g2.dispose();
+            }
+        };
+
+        // Aplicar a campos de texto
+        configurarCampo(txtNombreUsuario, dimensionCampos, fuenteCampos, roundedBorder);
+        configurarCampo(txtCorreoElectronico, dimensionCampos, fuenteCampos, roundedBorder);
+        configurarCampo(txtContrasena, dimensionCampos, fuenteCampos, roundedBorder);
+
+        // Configurar Botones
+        configurarBotonEstilo(btnCrearCuenta, new Color(50, 50, 50), Color.WHITE, dimensionBotones, fuenteBotones);
+        configurarBotonEstilo(btnregresar, new Color(220, 220, 220), Color.BLACK, dimensionBotones, fuenteBotones);
+
+        // Forzar actualización de layout
+        this.revalidate();
+        this.repaint();
+    }
+
+    private void configurarCampo(JTextField campo, Dimension dim, Font fuente, AbstractBorder borde) {
+        campo.setPreferredSize(dim);
+        campo.setFont(fuente);
+        campo.setBackground(Color.WHITE);
+        // Añadimos un margen interno para que el texto no toque el borde
+        campo.setBorder(BorderFactory.createCompoundBorder(borde, BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+    }
+
+    private void configurarBotonEstilo(JButton btn, Color fondo, Color texto, Dimension dim, Font fuente) {
+        btn.setBackground(fondo);
+        btn.setForeground(texto);
+        btn.setPreferredSize(dim);
+        btn.setFont(fuente);
+        btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
     }
 
     /**

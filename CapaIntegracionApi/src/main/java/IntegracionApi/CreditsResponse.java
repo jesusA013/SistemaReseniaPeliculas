@@ -4,19 +4,12 @@
  */
 package IntegracionApi;
 
-import java.net.URL;
 import java.util.List;
-
 
 /**
  *
  * @author golea
  */
-public class ActorTMDB {
-    public int id;
-    public String name;
-    public String biography;
-    public String profile_path;
-
+public class CreditsResponse {
+    public List<ActorTMDB> cast;
 }
-

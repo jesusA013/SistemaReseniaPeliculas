@@ -35,22 +35,30 @@ public class Actor implements Serializable {
 
     @Column(nullable = false, length = 100)
     private String nombre;
-    
-    @Lob 
-    @Column(name = "biografia", columnDefinition = "TEXT")
+
+    @Lob
+    @Column(name = "biografia", columnDefinition = "LONGTEXT")
     private String biografia;
 
+    @Column(name = "ruta_perfil", length = 255)
+    private String rutaPerfil;
+
     // Relacion Many-to-Many: Definimos la tabla intermedia aqui
-    @ManyToMany
-    @JoinTable(
-            name = "pelicula_actor",
-            joinColumns = @JoinColumn(name = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "pelicula_id")
-    )
+    @ManyToMany(mappedBy = "listaActores")
     private List<Pelicula> peliculas;
 
     public Actor() {
     }
+
+    public String getRutaPerfil() {
+        return rutaPerfil;
+    }
+
+    public void setRutaPerfil(String rutaPerfil) {
+        this.rutaPerfil = rutaPerfil;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -91,6 +99,5 @@ public class Actor implements Serializable {
     public void setBiografia(String biografia) {
         this.biografia = biografia;
     }
-    
-    
+
 }

@@ -18,4 +18,5 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.mycompany.capaintegracionapi.CapaIntegracionApi</exec.mainClass>
     </properties>
+    <name>IntegracionApi</name>
 </project>

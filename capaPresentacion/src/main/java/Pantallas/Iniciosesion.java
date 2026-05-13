@@ -6,7 +6,22 @@ package Pantallas;
 
 import dtos.UsuarioDTO;
 import interfaces.IUsuarioService;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.border.AbstractBorder;
 import servicios.UsuarioService;
 
 /**
@@ -23,9 +38,100 @@ public class Iniciosesion extends javax.swing.JFrame {
     public Iniciosesion() {
         initComponents();
         this.usuarioService = new UsuarioService();
+
+        // 1. Maximizar la ventana
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+
+        // 2. CAMBIO CLAVE: Reconfigurar el contenedor principal para centrar de verdad
+        this.getContentPane().removeAll(); // Limpiamos lo que NetBeans puso fijo
+        this.getContentPane().setLayout(new GridBagLayout());
+        this.getContentPane().add(panelCentral, new GridBagConstraints());
+
+        // 3. Aplicar el diseño visual
+        personalizarDiseñoAgrandado();
+
         this.setLocationRelativeTo(null);
         txtUsuarioCorreo.setText("");
         txtContrasena.setText("");
+    }
+
+    private void personalizarDiseñoAgrandado() {
+        this.getContentPane().setBackground(Color.WHITE);
+    
+    
+    // Configuración del Panel Central (Gris)
+    panelCentral.setBackground(new Color(240, 240, 240));
+   
+    panelCentral.setPreferredSize(new Dimension(500, 600));
+
+        // CAMBIO CLAVE: Usar un Layout que apile los elementos verticalmente y los centre
+        panelCentral.setLayout(new javax.swing.BoxLayout(panelCentral, javax.swing.BoxLayout.Y_AXIS));
+        panelCentral.setBorder(BorderFactory.createEmptyBorder(40, 50, 40, 50)); // Margen interno
+
+        // Definición de Estilos
+        Dimension dimCampos = new Dimension(400, 50);
+        Dimension dimBotones = new Dimension(400, 60);
+        Font fuenteNormal = new Font("SansSerif", Font.PLAIN, 18);
+        Font fuenteNegrita = new Font("SansSerif", Font.BOLD, 18);
+
+        // 1. Organizar Correo
+        lblUsuarioCorreo.setFont(fuenteNormal);
+        lblUsuarioCorreo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        txtUsuarioCorreo.setMaximumSize(dimCampos);
+        txtUsuarioCorreo.setPreferredSize(dimCampos);
+        txtUsuarioCorreo.setFont(fuenteNormal);
+
+        // 2. Organizar Contraseña
+        lblContrasena.setFont(fuenteNormal);
+        lblContrasena.setAlignmentX(Component.CENTER_ALIGNMENT);
+        txtContrasena.setMaximumSize(dimCampos);
+        txtContrasena.setPreferredSize(dimCampos);
+        txtContrasena.setFont(fuenteNormal);
+
+        // Aplicar bordes redondeados con padding interno
+        AbstractBorder border = new AbstractBorder() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(Color.GRAY);
+                g2.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, 15, 15));
+                g2.dispose();
+            }
+        };
+        txtUsuarioCorreo.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 15, 5, 15)));
+        txtContrasena.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 15, 5, 15)));
+
+        // 3. Configurar Botones
+        configurarBotonGrande(btnIniciarSesion, new Color(40, 40, 40), Color.WHITE, dimBotones, fuenteNegrita);
+        configurarBotonGrande(btnRegistrarse, new Color(200, 200, 200), Color.BLACK, dimBotones, fuenteNegrita);
+        btnIniciarSesion.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnRegistrarse.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // --- AÑADIR AL PANEL CON ESPACIADO ---
+        panelCentral.add(lblUsuarioCorreo);
+        panelCentral.add(Box.createVerticalStrut(10)); // Espacio de 10px
+        panelCentral.add(txtUsuarioCorreo);
+        panelCentral.add(Box.createVerticalStrut(25)); // Espacio entre secciones
+        panelCentral.add(lblContrasena);
+        panelCentral.add(Box.createVerticalStrut(10));
+        panelCentral.add(txtContrasena);
+        panelCentral.add(Box.createVerticalStrut(40));
+        panelCentral.add(btnIniciarSesion);
+        panelCentral.add(Box.createVerticalStrut(15));
+        panelCentral.add(btnRegistrarse);
+
+        panelCentral.revalidate();
+    }
+
+    private void configurarBotonGrande(JButton btn, Color fondo, Color texto, Dimension dim, Font fuente) {
+        btn.setBackground(fondo);
+        btn.setForeground(texto);
+        btn.setPreferredSize(dim);
+        btn.setMinimumSize(dim);
+        btn.setFont(fuente);
+        btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
     }
 
     /**
@@ -37,21 +143,29 @@ public class Iniciosesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnIniciarSesion = new javax.swing.JButton();
-        btnRegistrarse = new javax.swing.JButton();
-        lblUsuarioCorreo = new javax.swing.JLabel();
+        panelCentral = new javax.swing.JPanel();
         txtUsuarioCorreo = new javax.swing.JTextField();
+        lblUsuarioCorreo = new javax.swing.JLabel();
         lblContrasena = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JTextField();
+        btnRegistrarse = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnIniciarSesion.setText("Iniciar Sesion");
-        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarSesionActionPerformed(evt);
-            }
-        });
+        panelCentral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtUsuarioCorreo.setText("jTextField1");
+        panelCentral.add(txtUsuarioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 135, 34));
+
+        lblUsuarioCorreo.setText("Correo Electornico");
+        panelCentral.add(lblUsuarioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 176, -1));
+
+        lblContrasena.setText("Contrasena");
+        panelCentral.add(lblContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 135, -1));
+
+        txtContrasena.setText("jTextField1");
+        panelCentral.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 135, 38));
 
         btnRegistrarse.setText("Registrarse");
         btnRegistrarse.setToolTipText("");
@@ -60,47 +174,31 @@ public class Iniciosesion extends javax.swing.JFrame {
                 btnRegistrarseActionPerformed(evt);
             }
         });
+        panelCentral.add(btnRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 135, 46));
 
-        lblUsuarioCorreo.setText("Correo Electornico");
-
-        txtUsuarioCorreo.setText("jTextField1");
-
-        lblContrasena.setText("Contrasena");
-
-        txtContrasena.setText("jTextField1");
+        btnIniciarSesion.setText("Iniciar Sesion");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
+        panelCentral.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 135, 46));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(294, 294, 294)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsuarioCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                        .addComponent(lblContrasena, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtUsuarioCorreo, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addGap(180, 180, 180)
+                .addComponent(panelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(lblUsuarioCorreo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUsuarioCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblContrasena)
-                .addGap(18, 18, 18)
-                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addComponent(panelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,13 +209,11 @@ public class Iniciosesion extends javax.swing.JFrame {
         String email = txtUsuarioCorreo.getText().trim();
         String password = txtContrasena.getText().trim();
 
-        // Validaciones básicas de UI
         if (email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // Llamada al servicio
         UsuarioDTO usuarioLogueado = usuarioService.iniciarSesion(email, password);
 
         if (usuarioLogueado != null) {
@@ -125,16 +221,15 @@ public class Iniciosesion extends javax.swing.JFrame {
 
             Principal pantallaPrincipal = new Principal(usuarioLogueado);
 
-            pantallaPrincipal.setSize(this.getContentPane().getSize());
+            this.getContentPane().setLayout(new java.awt.BorderLayout());
             this.getContentPane().removeAll();
-            this.getContentPane().add(pantallaPrincipal);
+            this.getContentPane().add(pantallaPrincipal, java.awt.BorderLayout.CENTER);
             this.getContentPane().revalidate();
             this.getContentPane().repaint();
 
         } else {
             JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.", "Error de acceso", JOptionPane.ERROR_MESSAGE);
         }
-
 
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
@@ -192,6 +287,7 @@ public class Iniciosesion extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JLabel lblContrasena;
     private javax.swing.JLabel lblUsuarioCorreo;
+    private javax.swing.JPanel panelCentral;
     private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtUsuarioCorreo;
     // End of variables declaration//GEN-END:variables

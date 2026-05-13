@@ -5,6 +5,7 @@
 package interfaces;
 
 import dtos.ResenaDTO;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,8 @@ import dtos.ResenaDTO;
 public interface IReseñaService {
 
     void publicarResena(ResenaDTO resenaDTO) throws Exception;
+
+    List<ResenaDTO> obtenerResenasPorPelicula(int idPelicula);
+
+    List<ResenaDTO> obtenerResenasPorUsuario(int idUsuario);
 }

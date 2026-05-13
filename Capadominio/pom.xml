@@ -68,5 +68,5 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.mycompany.capadominio.Capadominio</exec.mainClass>
     </properties>
-    <name>CapaPersistencia</name>
+    <name>Persistencia</name>
 </project>

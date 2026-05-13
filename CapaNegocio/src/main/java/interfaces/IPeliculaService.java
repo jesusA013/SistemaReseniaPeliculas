@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import dtos.ActorDTO;
 import dtos.PeliculasDTO;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface IPeliculaService {
     PeliculasDTO buscarPelicula(int id);
     List<PeliculasDTO> obtenerUltimasPeliculas();
     void sincronizarApi(int tmdbId);
+    List<ActorDTO>obtenerActoresRecientes();
+    PeliculasDTO buscarOPersistirPelicula(String titulo);
     }

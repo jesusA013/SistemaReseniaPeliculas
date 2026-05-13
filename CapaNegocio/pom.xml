@@ -22,4 +22,5 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.mycompany.capanegocio.CapaNegocio</exec.mainClass>
     </properties>
+    <name>Negocio</name>
 </project>

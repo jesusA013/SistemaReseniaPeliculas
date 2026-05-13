@@ -11,10 +11,16 @@
             <artifactId>CapaNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE230</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.mycompany.capapresentacion.CapaPresentacion</exec.mainClass>
     </properties>
+    <name>Presentacion</name>
 </project>
